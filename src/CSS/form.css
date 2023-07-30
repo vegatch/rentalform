@@ -1,0 +1,59 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+.header{
+    text-align:center;
+}
+
+.align-right{
+    text-align:right;
+    /* font-weight:bolder; */
+}
+
+.property-desc{
+    margin:20px 0; 
+    padding:10px;
+}
+
+.text-bold{
+    font-weight:bolder;
+}
+input[type=text]
+,input[type=date] 
+,input[type=email]
+,input[type=number]{
+  padding:10px;
+  margin:10px 0; 
+  box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+  border-radius:10px;
+  border:none;
+  outline:darkgray;
+  width:100%;
+}
+
+div{
+    margin:10px 0; 
+}
+
+fieldset{
+    margin:20px 0; 
+    border:none;
+}
+
+legend{
+    margin:20px 0; 
+    font-weight: bolder;
+    font-size:1.1rem;
+}
+
+button{
+    width:100%;
+    height:3rem;
+    background-color: blue;
+    outline: none;
+    color: white;
+    border-radius:2rem;
+    border:none;
+    font-size: 1.1rem;
+}
