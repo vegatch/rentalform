@@ -117,7 +117,7 @@ const RentForm = () => {
    e.preventDefault();
     // setSubmitting(true);
    console.log({ formData });
-   const response = await fetch("http://localhost:3001/rentscreen", {
+   const response = await fetch("https://migarental-api.onrender.com/rentscreen", {
      method: "POST",
      headers: {
        "Content-type": "application/json",
