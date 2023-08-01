@@ -104,6 +104,7 @@ const RentForm = () => {
 
  const [formData, setFormData] = useState(initialState);
 
+
  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -118,6 +119,7 @@ const RentForm = () => {
     // setSubmitting(true);
    console.log({ formData });
    const response = await fetch("https://migarental-api.onrender.com/rentscreen", {
+    // const response = await fetch("http://localhost:3001/rentscreen", {
      method: "POST",
      headers: {
        "Content-type": "application/json",
@@ -129,20 +131,19 @@ const RentForm = () => {
      .then(async (res) => {
        const resData = await res;
        console.log(resData);
-    //    console.log(response);
        if (resData.status === "success") {
-        //  alert("Message Sent");
-         document.getElementsByClassName("main").style.display = "none";
-         document.getElementsByClassName("msg-submission").style.display = "block";
-       } else if (resData.status === "fail") {
-         alert("Message failed to send");
-       }
-     })
-     .then(() => {
-      
-      setFormData(initialState)
+           alert("Message Sent");
+           
+        } else if (resData.status === "fail") {
+            alert("Message failed to send");
+        }
+    })
+    .then(() => {
+        
+        setFormData(initialState);
         // setSubmitting(false);
-     });
+        // console.log(response);
+    });
  };
 
   return (
@@ -182,7 +183,7 @@ const RentForm = () => {
                         <div>            
                             <label>
                             First Name:
-                            <input type="text" name="fname" onChange={handleChange}/>
+                            <input type="text" name="fname" onChange={handleChange} required/>
                             </label>
                             <label>
                                 Middle Name:
@@ -190,15 +191,23 @@ const RentForm = () => {
                             </label>
                             <label>
                                 Last Name:
-                                <input type="text" name="lname" onChange={handleChange}/>
+                                <input type="text" name="lname" onChange={handleChange} required/>
                             </label>
+                            {/* <label>
+                                DOB:
+                                
+                                <input type="date" name="dob" className="datepicker-input" onChange={handleChange}/>
+                            </label> */}
                             <label>
                                 DOB:
-                                <input type="date" name="dob" onChange={handleChange}/>
+                                <span className="datepicker-toggle">
+                                    <span className="datepicker-toggle-button"></span>
+                                    <input type="date" name="dob" className="datepicker-input" required/>
+                                </span>
                             </label>
                             <label>
                                 SSN:
-                                <input type="text" name="mssn" onChange={handleChange}/>
+                                <input type="text" name="mssn" onChange={handleChange} required/>
                             </label>
                         </div>
                         <div>
@@ -208,11 +217,11 @@ const RentForm = () => {
                             </label>
                             <label>
                                 Phone:
-                                <input type="text" name="phone" onChange={handleChange}/>
+                                <input type="text" name="phone" onChange={handleChange} required/>
                             </label>
                             <label>
                                 Email:
-                                <input type="email" name="applicantemail" onChange={handleChange}/>
+                                <input type="email" name="applicantemail" onChange={handleChange} required/>
                             </label>
                         
                         </div>
@@ -293,11 +302,11 @@ const RentForm = () => {
                             
                             <label>
                                 Company:
-                                <input type="text" name="company" onChange={handleChange}/>
+                                <input type="text" name="company" onChange={handleChange} required/>
                             </label>
                             <label>
                                 Occupation/Title:
-                                <input type="text" name="occupation" onChange={handleChange}/>
+                                <input type="text" name="occupation" onChange={handleChange} required/>
                             </label>
                             <label>
                                 How long:
@@ -310,15 +319,15 @@ const RentForm = () => {
                             <div>
                             <label>
                                 Street affress:
-                                <input type="text" name="street" onChange={handleChange}/>
+                                <input type="text" name="street" onChange={handleChange} required/>
                             </label>
                             <label>
                                 City:
-                                <input type="text" name="city" onChange={handleChange}/>
+                                <input type="text" name="city" onChange={handleChange} required/>
                             </label>
                             <label>
                                 State:
-                                <input type="text" name="state" onChange={handleChange}/>
+                                <input type="text" name="state" onChange={handleChange} required/>
                             </label>
                             <label>
                                 Supervisor:
@@ -386,24 +395,24 @@ const RentForm = () => {
                         </label>
                         <label>
                             Rent amount (/Month):
-                            <input type="number" name="rentamount" onChange={handleChange}/> 
+                            <input type="number" name="rentamount" onChange={handleChange} required/> 
                         </label>
                         <div>
                         <label>
                             Street address:
-                            <input type="text" name="curstreetres" onChange={handleChange}/>
+                            <input type="text" name="curstreetres" onChange={handleChange} required/>
                         </label>
                         <label>
                             City:
-                            <input type="text" name="curcityres" onChange={handleChange}/>
+                            <input type="text" name="curcityres" onChange={handleChange} required/>
                         </label>
                         <label>
                             State:
-                            <input type="text" name="curstateres" onChange={handleChange}/>
+                            <input type="text" name="curstateres" onChange={handleChange} required/>
                         </label>
                         <label>
                             ZIP:
-                            <input type="number" name="curzipres" onChange={handleChange}/>
+                            <input type="number" name="curzipres" onChange={handleChange} required/>
                         </label>
                         <label>
                             How long at this address?:
@@ -411,7 +420,7 @@ const RentForm = () => {
                         </label>
                         <label>
                             Current lease expiration date?:
-                            <input type="date" name="curexpirationres" onChange={handleChange}/>
+                            <input type="date" name="curexpirationres" onChange={handleChange} required/>
                         </label>
                         <label>
                             Desire for moving?:
@@ -419,16 +428,16 @@ const RentForm = () => {
                         </label>
                         <p className="legend"> Current landlord</p>
                         <label>
-                            Name:
-                            <input type="text" name="landlordname" onChange={handleChange}/>
+                            Name of the landlord or apartment:
+                            <input type="text" name="landlordname" onChange={handleChange} required/>
                         </label>
                         <label>
                             Address:
-                            <input type="text" name="landlordaddress" onChange={handleChange}/>
+                            <input type="text" name="landlordaddress" onChange={handleChange} required/>
                         </label>
                         <label>
                             Phone:
-                            <input type="text" name="landlordphone" onChange={handleChange}/>
+                            <input type="text" name="landlordphone" onChange={handleChange} required/>
                         </label>
                         <label>
                             Email:
@@ -487,7 +496,7 @@ const RentForm = () => {
                         </label>                    
                         <p className="legend"> Previous landlord</p>
                         <label>
-                            Name:
+                            Name of the landlord or apartment:
                             <input type="text" name="prevlandlordname" onChange={handleChange}/>
                         </label>
                         <label>
@@ -554,7 +563,7 @@ const RentForm = () => {
                         </label>                    
                         <p className="legend"> Previous landlord</p>
                         <label>
-                            Name:
+                            Name of the landlord or apartment:
                             <input type="text" name="prevlandlordname2" onChange={handleChange}/>
                         </label>
                         <label>
@@ -631,11 +640,11 @@ const RentForm = () => {
                         <div>
                             <label>
                                 Applicant's Signature
-                                <input type="text" name="applicantsignature" onChange={handleChange}/>
+                                <input type="text" name="applicantsignature" onChange={handleChange} required/>
                             </label>
                             <label>
                                 Date signed
-                                <input type="date" name="applicantdatesignature" onChange={handleChange}/>
+                                <input type="date" name="applicantdatesignature" onChange={handleChange} required/>
                             </label>
                             <button type="Submit" className="text-bold">Submit</button>
                         </div>
